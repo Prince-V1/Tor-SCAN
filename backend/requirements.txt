@@ -2,4 +2,4 @@ fastapi
 uvicorn
 python-multipart
 requests
-google genai
+google-genai
