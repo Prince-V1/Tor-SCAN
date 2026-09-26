@@ -484,7 +484,8 @@ async def explain(data: dict):
             timeout=30
         )
 
-                if not r.ok:
+        # FIXED GEMINI ERROR HANDLING
+        if not r.ok:
             try:
                 error_data = r.json()
                 error_message = error_data.get("error", {}).get(
