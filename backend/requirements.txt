@@ -2,4 +2,4 @@ fastapi
 uvicorn
 python-multipart
 requests
-reportlab
+google genai
