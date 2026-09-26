@@ -485,10 +485,19 @@ async def explain(data: dict):
         )
 
         if not r.ok:
-            raise HTTPException(
-                status_code=502,
-                detail="Gemini rejected the explanation request."
-            )
+    try:
+        error_data = r.json()
+        error_message = error_data.get("error", {}).get(
+            "message",
+            "Unknown Gemini API error."
+        )
+    except Exception:
+        error_message = r.text[:500]
+
+    raise HTTPException(
+        status_code=502,
+        detail=f"Gemini API error: {error_message}"
+    )
 
         d = r.json()
 
